@@ -1,0 +1,4 @@
+export const checkerConst = {
+    LOGIN_CHECK_FAILURE:'LOGIN_CHECK_FAILURE',    
+    LOGIN_CHECK_RESET:'LOGIN_CHECK_RESET'
+}
