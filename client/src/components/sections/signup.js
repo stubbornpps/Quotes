@@ -45,8 +45,19 @@ const styles = (theme) => ({
     height: "auto",
     width: "50%",
     padding: "20px",
-    boxShadow: "1px 1px 10px #00000040;",
-    // background:'blue',
+    boxShadow: "1px 1px 10px #00000040;", 
+    [theme.breakpoints.up("lg")]: {
+      top:"54px !important", 
+    },   
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      left: "1px",
+      top:'0px'
+    },
+    [theme.breakpoints.up("sm")]: {      
+      top: "-23px",
+      left: "23%",
+    }
   },
   paperdiv: {
     padding: "12px",
@@ -193,7 +204,7 @@ function Signup({ classes, ...props }) {
       {props.responseSign.loading_signup === 1 ? <Spinner display="block" /> :<Spinner display="none" />}
       <div className={classes.div}>
         <Grid container>
-          <Grid item xs={12} lg={6} sm={12} className={classes.leftdiv}>
+          <Grid item xs={12} lg={6} sm={12} md={12} className={classes.leftdiv}>
             <Typography
               variant="h4"
               align="center"
@@ -212,7 +223,7 @@ function Signup({ classes, ...props }) {
               alt='pranay-2'
             ></img>
           </Grid>
-          <Grid className={classes.rightdiv} item xs={12} lg={6} sm={12}>
+          <Grid className={classes.rightdiv} item xs={12} lg={6} md={12} sm={12}>
             <Paper className={classes.paper} maxWidth={1}>
               <div className={classes.paperdiv}>
                 <Typography variant="h3">Sign Up</Typography>

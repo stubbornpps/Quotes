@@ -105,7 +105,7 @@ router.post('/forgotpassword',(req,res)=>{
         if(user){             
             user.generatePasswordReset();                    
             user.save((error,user_data)=>{
-                let link = "http://localhost:3000/resetpassword/" + user_data.resetPasswordToken;                
+                let link = "https://atom-quotes.herokuapp.com/resetpassword/" + user_data.resetPasswordToken;                
                 const __dirname = path.resolve(path.dirname('')); 
                 const filePath = path.join(__dirname,'/src/mailer/resetpassword.html');
                 const source = fs.readFileSync(filePath, 'utf-8').toString();

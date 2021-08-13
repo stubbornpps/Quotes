@@ -18,9 +18,16 @@ const styles = theme=>({
             // background:"orange",
             padding:'20px',                 
             textAlign:'left',
+            [theme.breakpoints.down("sm")]: {
+                padding:'0px',
+            },
         },
         textCenter:{
-            marginTop:'200px', marginLeft:'25px'           
+            marginTop:'200px',
+            marginLeft:'25px',
+            [theme.breakpoints.down("sm")]: {
+              marginTop:'20px'
+            },           
         },
         textin:{            
             marginTop:'20px',
@@ -31,13 +38,18 @@ const styles = theme=>({
             marginLeft:'25px',         
             color:'#0070ff',
             borderColor:'#0070ff'            
+        },
+        homepic:{
+            [theme.breakpoints.down("sm")]: {
+                textAlign:'center'
+              },  
         }
 })
 function Fsection({classes,...props}) {
     return (
         <div className={classes.root}>
         <Grid container>
-            <Grid item xs={12}  lg={6} >
+            <Grid item xs={12}  lg={6}  >
             <div className={classes.maindiv}>
                 <Typography variant="h2" className={`${classes.textCenter}`}>
                     Want to share your positive thoughts ?
@@ -52,8 +64,8 @@ function Fsection({classes,...props}) {
                 </Link>
             </div>
             </Grid>
-            <Grid  item xs={12} lg={6}>
-            <img className={classes.img} width="86%" height="90%" src={main} alt='user_group' ></img>            
+            <Grid  item xs={12} lg={6} className={classes.homepic}>
+                <img className={classes.img} width="86%" height="90%" src={main} alt='user_group' ></img>            
             </Grid>
         </Grid>
         </div>

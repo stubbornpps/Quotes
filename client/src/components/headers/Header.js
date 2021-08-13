@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, Typography , withStyles, Box, Button } from '@material-ui/core';
-import {  Link, useLocation } from "react-router-dom";
+import {  Link, useLocation,matchPath,useParams } from "react-router-dom";
 import Atom from '../../images/atom.png';
 import {removeToken , getToken } from '../../middleware/middleware';
 import { useDispatch } from "react-redux";
@@ -38,14 +38,14 @@ const styles = theme =>({
     }
   })
 
-function Header({classes,...props}) {
+function Header({classes,...props}) {       
     const dispatch = useDispatch();    
     const logOut = ()=>{
         removeToken();
         dispatch(Logoutaction());
     }    
-    const buttonDash =(pathname)=>{
-        if((pathname==="/" || pathname=== "/profile" || pathname=== "/view" || pathname=== "/add" ) && getToken() !== null ){
+    const buttonDash =(pathname)=>{          
+        if((pathname==="/" || pathname=== "/profile" || pathname=== "/view" || pathname=== "/add" || pathname.split('/')[1] === "edit" ) && getToken() !== null ){
             return(<Link  to='/dashboard' style={{textDecoration:'none'}}>
             <Button  className={classes.buttonLog}  variant="outlined" >
                 Dashboard
@@ -53,8 +53,7 @@ function Header({classes,...props}) {
             </Link>)
         }
     }
-        const buttonVariation = (pathname) =>{                
-            
+        const buttonVariation = (pathname) =>{                            
                 if(getToken() === null && pathname==="/login" ){
                     return(<Link  to='/signup' style={{textDecoration:'none'}}>
                     <Button  className={classes.buttonLog}  variant="outlined" >
@@ -71,11 +70,11 @@ function Header({classes,...props}) {
                     </Link>)
                     }                    
                 }
-                if(getToken() != null  ){
-                    if( pathname === '/dashboard' || pathname === '/' || pathname === '/profile' || pathname === '/view'  || pathname === '/add'){
+                if(getToken() != null  ){                    
+                    if( pathname === '/dashboard' || pathname === '/' || pathname === '/profile' || pathname === '/view'  || pathname === '/add' || pathname.split('/')[1] === "edit" ){
                         return(<Link  to='/login' style={{textDecoration:'none'}}>
                     <Button className={classes.buttonLog}  variant="outlined" onClick ={logOut} >
-                        Log Out
+                        Log Out 
                     </Button>                    
                     </Link>)
                     }
@@ -88,15 +87,15 @@ function Header({classes,...props}) {
         <AppBar position="static" color="inherit" className={classes.navbar} >        
             <Box display="flex" alignItems="center">
             <Box width="100%" display="flex"  alignItems="center" >            
-            <Typography variant="h5" className={classes.title}>
+            <Typography variant="h5" className={classes.title}>               
                 <Link to='/' style={{textDecoration:'none',color:'white'}}>
                     <img className={classes.bicon} src={Atom} alt="Brand Logo" />
-                    Atom
+                    Atom 
                 </Link>                
             </Typography>
             </Box>
             {buttonDash(location.pathname)}
-            <Box>
+            <Box>            
                 {buttonVariation(location.pathname)}
             </Box>
             </Box>                        

@@ -2,7 +2,7 @@ import './App.css';
 import Login from './components/sections/Login.js';
 import Home from './components/sections/Home.js';
 import Dashboard from './components/Dashboard/Dashboard';
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,useParams} from "react-router-dom";
 import ButterToast,{ POS_CENTER,POS_TOP } from "butter-toast";
 import signup from './components/sections/signup';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -17,7 +17,7 @@ import View from './components/Quotes/View.js';
 import Add from './components/Quotes/Add.js';
 library.add(fab, faCheckSquare, faCoffee)
 
-function App() {
+function App() {  
   return(    
     <>
     <ButterToast position={{vertical:POS_TOP,horizontal:POS_CENTER}} />
